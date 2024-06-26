@@ -537,9 +537,6 @@ while opcion <=4:
                     3. Ventas por Rango de Fecha
                     4. Salir al Menu Principal
                     """)
-                for venta in ventas:
-                    print(venta)
-                    print(venta[1])
                 opcion=int(input("Ingrese una opcion 1-4: "))
                 match opcion:
                     case 1:                   
