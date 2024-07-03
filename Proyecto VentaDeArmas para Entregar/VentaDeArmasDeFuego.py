@@ -7,6 +7,7 @@ os.system("cls")
 productos=[]
 ventas = []
 
+
 def buscar_id(id): 
     for a in productos:
         if a[0]==id:
@@ -14,11 +15,30 @@ def buscar_id(id):
     return -1
 
 def validar_longitud_id(id):
-    while len(id) != 4:
-        print("\n Error, el ID del producto debe tener exactamente 4 caracteres.")
-        id = input("Ingrese el ID del producto (debe tener 4 caracteres): ")
-    return id 
-
+    while True:
+        os.system("cls")
+        try:
+         if id==0:
+             id = input("Ingrese el ID del producto (debe tener 4 caracteres): ")
+         i=id[0]
+         d=int(id[1:4])
+         if len(id) != 4:
+            print("\n Error, el ID del producto debe tener exactamente 4 caracteres.")
+            id = input("Ingrese el ID del producto (debe tener 4 caracteres): ")
+         elif i!="a" or d<=0:
+            print("\n Error, el ID del producto debe seguir el formato (axxx) donde x son numeros\n No puede ingresar el valor ID como 000.")
+            id = input("Ingrese el ID del producto (debe tener 4 caracteres): ")
+         else:
+            return id 
+        except ValueError:
+            print("\n Error, el ID del producto debe seguir el formato (Axxx) donde x son numeros.")
+            id=0
+            continue
+        except IndexError:
+            print("No puede dejar el ID vacio")
+            id=0
+            continue
+         
 def validar_id_unica(id):
     for producto in productos:
         if producto[0] == id:
@@ -178,7 +198,7 @@ def agregar_producto():
     while True:
         id = input("\n Ingrese el ID del producto (4 caracteres): ")
         id = validar_longitud_id(id)
-        id = id.ljust(4)  
+        id = id.ljust(4)
         if validar_id_unica(id):
             nombre = input("Ingrese el Nombre del Arma: ").strip()
             if len(nombre) == 0:
